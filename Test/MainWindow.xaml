@@ -1,0 +1,180 @@
+﻿<Window x:Class="Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Test"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Width="1600" Height="900"
+        >
+    
+    <Window.DataContext>
+        <local:WindowViewModel>
+            <local:ItemViewModel Title="Item 1">
+                <TextBlock>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam faucibus scelerisque erat. Nunc eu sapien nec lacus placerat euismod at eu ante.
+                    <LineBreak />
+                    Vivamus dictum turpis a tempus mollis. Donec neque sem, bibendum vitae magna ac, pharetra commodo ipsum. Cras id lorem sit amet dolor aliquet
+                    <LineBreak />
+                    tincidunt. Sed lobortis posuere lacus ac hendrerit. Suspendisse potenti. Cras sodales elementum quam, ut gravida ipsum efficitur non. Pellentesque
+                    <LineBreak />
+                    aliquam turpis quis elit aliquam, vitae interdum elit accumsan. Sed in orci quis ligula consequat rutrum eu sit amet justo. Proin sed maximus diam,
+                    <LineBreak />
+                    ut lacinia massa.
+                </TextBlock>
+            </local:ItemViewModel>
+            <local:ItemViewModel Title="Item 2">
+                <TextBlock>
+                    Aliquam eget turpis maximus, convallis risus at, egestas magna. Nullam id semper magna. Vestibulum vel sollicitudin est, in scelerisque nisl.
+                    <LineBreak />
+                    Nullam rhoncus scelerisque tempor. Aliquam condimentum velit libero, ac accumsan dui suscipit sed. Donec quis efficitur ex. Ut lacinia tincidunt
+                    <LineBreak />
+                    sodales. Vivamus eu arcu non felis fermentum iaculis sit amet sit amet eros. Nullam commodo augue vitae iaculis pharetra. In tempus mauris vel
+                    <LineBreak />
+                    leo sodales finibus. Aliquam consectetur metus non tincidunt bibendum. Nulla facilisi. Morbi eu eros sit amet enim molestie consequat et cursus ipsum.
+                </TextBlock>
+            </local:ItemViewModel>
+            <local:ItemViewModel Title="Item 3">
+                <TextBlock>
+                    Duis hendrerit luctus nibh ac luctus. Donec feugiat ornare hendrerit. Proin non massa et quam ullamcorper pharetra. In aliquam augue eu dui ultricies
+                    <LineBreak />
+                    viverra. Sed eu dui quam. Vivamus convallis mattis turpis quis efficitur. Aliquam molestie odio dolor, vitae placerat dui sagittis eu. Maecenas at
+                    <LineBreak />
+                    suscipit risus.
+                </TextBlock>
+            </local:ItemViewModel>
+            <local:ItemViewModel Title="Item 4">
+                <TextBlock>
+                    Vivamus consequat et lacus vel maximus. Cras luctus nunc nec ante facilisis, id pellentesque eros rhoncus. Interdum et malesuada fames ac ante
+                    <LineBreak />
+                    ipsum primis in faucibus. Proin ac venenatis augue. Praesent in placerat mauris, nec sollicitudin turpis. Donec pharetra lacus sit amet tincidunt
+                    <LineBreak />
+                    commodo. Suspendisse potenti. Curabitur mollis congue euismod. Sed sit amet lorem a erat fermentum molestie sit amet tristique ligula. Mauris eget
+                    <LineBreak />
+                    congue nisi, ac sollicitudin massa. Fusce blandit consequat fringilla. Aliquam erat volutpat. Maecenas tincidunt, velit sit amet facilisis consequat,
+                    <LineBreak />
+                    justo urna condimentum arcu, sed rutrum sapien dui at leo. Sed mollis nibh eget imperdiet tincidunt. In id tempus eros.
+                </TextBlock>
+            </local:ItemViewModel>
+            <local:ItemViewModel Title="Item 5">
+                <TextBlock>
+                    Nam a sodales justo, lacinia suscipit augue. Cras eu velit ac lorem iaculis tempus laoreet ac elit. Vivamus quis ex sit amet urna posuere mattis
+                    <LineBreak />
+                    eget vitae eros. Cras et nisl in mi mattis dignissim. Vestibulum urna sem, fringilla nec arcu eu, congue faucibus nisl. Phasellus ac pharetra justo.
+                    <LineBreak />
+                    Etiam interdum elit dolor, nec pharetra mauris sodales vitae. Phasellus sit amet libero enim. Curabitur euismod facilisis nibh, ut aliquet metus
+                    <LineBreak />
+                    aliquet et. Etiam id elementum libero. Phasellus finibus condimentum orci in gravida. Sed faucibus massa ex, et pellentesque justo pellentesque at.
+                    <LineBreak />
+                    Duis ultricies urna turpis. Vestibulum sagittis eros in ante malesuada finibus. Aliquam vitae arcu eget sapien commodo suscipit. Duis sit amet porta
+                    <LineBreak />
+                    massa, a condimentum leo.
+                </TextBlock>
+            </local:ItemViewModel>
+        </local:WindowViewModel>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        
+        <DataTemplate x:Key="AccordionContentTemplate">
+            <ContentPresenter Content="{Binding}" Margin="8,8,20,8" />
+        </DataTemplate>
+        
+        <Style x:Key="ItemContainerStyle"
+               TargetType="{x:Type local:AccordionItem}"
+               d:DataContext="{d:DesignInstance Type=local:ItemViewModel, IsDesignTimeCreatable=False}">
+            <Setter Property="Header" Value="{Binding Title}" />
+            <Setter Property="Content" Value="{Binding Text}" />
+            <Setter Property="ContentTemplate" Value="{StaticResource AccordionContentTemplate}" />
+            <Setter Property="BorderBrush" Value="Blue" />
+            <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="Padding" Value="4" />
+            <!-- 
+            <Setter Property="HeaderBackground" Value="LightBlue" />
+            <Setter Property="HeaderFontSize" Value="24" />
+            -->
+        </Style>
+        
+        <Style x:Key="MaterialDesignItemContainerStyle"
+               TargetType="{x:Type local:MaterialDesignAccordionItem}"
+               d:DataContext="{d:DesignInstance Type=local:ItemViewModel, IsDesignTimeCreatable=False}">
+            <Setter Property="Header" Value="{Binding Title}" />
+            <Setter Property="Content" Value="{Binding Text}" />
+            <Setter Property="ContentTemplate" Value="{StaticResource AccordionContentTemplate}" />
+            <Setter Property="BorderBrush" Value="Blue" />
+            <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="Padding" Value="4" />
+            <Setter Property="HeaderBackground" Value="LightBlue" />
+            <Setter Property="HeaderFontSize" Value="34" />
+        </Style>
+        
+        <Style TargetType="{x:Type local:Accordion}"
+               BasedOn="{StaticResource {x:Type local:Accordion}}">
+            <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="ItemsSource" Value="{Binding Items}" />
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ItemContainerStyle}" />
+        </Style>
+        <Style TargetType="{x:Type local:MaterialDesignAccordion}"
+               BasedOn="{StaticResource {x:Type local:MaterialDesignAccordion}}">
+            <Setter Property="BorderThickness" Value="4" />
+            <Setter Property="ItemsSource" Value="{Binding Items}" />
+            <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignItemContainerStyle}" />
+        </Style>
+        
+        <system:Boolean x:Key="True">True</system:Boolean>
+        <system:Boolean x:Key="False">False</system:Boolean>
+    </Window.Resources>
+    
+
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="0">
+            <GroupBox Header="Expand Direction">
+                <StackPanel>
+                    <TextBlock Text="{Binding ExpandDirection, StringFormat=Current Value: {0}}" />
+                    <RadioButton
+                        IsChecked="{local:EnumIsChecked ExpandDirection, Value={x:Static ExpandDirection.Left}, AlsoSetContent=True}" />
+                    <RadioButton
+                        IsChecked="{local:EnumIsChecked ExpandDirection, Value={x:Static ExpandDirection.Right}, AlsoSetContent=True}" />
+                    <RadioButton
+                        IsChecked="{local:EnumIsChecked ExpandDirection, Value={x:Static ExpandDirection.Down}, AlsoSetContent=True}" />
+                    <RadioButton
+                        IsChecked="{local:EnumIsChecked ExpandDirection, Value={x:Static ExpandDirection.Up}, AlsoSetContent=True}" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Font Size">
+                <StackPanel>
+                    <TextBlock Text="{Binding FontSize, StringFormat=Current Value: {0}}" />
+                    <Slider Interval="2"
+                            TickFrequency="2"
+                            IsSnapToTickEnabled="True"
+                            Minimum="8"
+                            Maximum="72"
+                            MinWidth="150"
+                            Value="{Binding FontSize, Mode=TwoWay}" />
+                </StackPanel>
+            </GroupBox>
+        </WrapPanel>
+
+        <local:MaterialDesignAccordion Grid.Row="2"
+                         ExpandDirection="{Binding ExpandDirection}"
+                         TextElement.FontSize="{Binding FontSize}"
+                         BorderBrush="Red"
+                         BorderThickness="2"
+                         >
+            <local:Accordion.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <local:AccordionFillPanel />
+                </ItemsPanelTemplate>
+            </local:Accordion.ItemsPanel>
+        </local:MaterialDesignAccordion>
+    </Grid>
+</Window>
